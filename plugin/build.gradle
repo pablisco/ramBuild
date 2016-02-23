@@ -1,0 +1,32 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+group = 'com.pablisco.gradle'
+version = '0.1'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.allSource
+}
+
+publishing {
+  repositories {
+      maven {
+          // change to point to your repo, e.g. http://my.org/repo
+          url "../repo"
+      }
+  }
+  publications {
+      maven(MavenPublication) {
+        artifactId "rambuild"
+        /*artifact(sourceJar) {
+          classifier "sources"
+        }*/
+        from components.java
+      }
+  }
+}
