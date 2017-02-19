@@ -8,24 +8,26 @@ class RamBuildPlugin implements Plugin<Project> {
   def RAM_DISK_NAME = "build"
 
   def file = { new File(it) }
+    private Project project
 
-  def run(String command, onSuccess) {
-      logger.info "Running command: $command"
-      command.execute(null, rootDir).with {
+    def run(String command, onSuccess) {
+      project.logger.info "Running command: $command"
+      command.execute(Collections.emptyList(), project.rootDir).with {
           waitFor()
-          exitValue() ? logger.error("Error: ${err.text}") : onSuccess(getIn().text)
+          exitValue() ? project.logger.error("Error: ${err.text}") : onSuccess(getIn().text)
       }
   }
 
   def void apply(Project project) {
 
     // TODO: implement for linux and Windows
-    if (!file("/Volumes/$RAM_DISK_NAME").exists()) {
-        logger.lifecycle "Creating ramDisk $RAM_DISK_NAME"
+      this.project = project
+      if (!file("/Volumes/$RAM_DISK_NAME").exists()) {
+        project.logger.lifecycle "Creating ramDisk $RAM_DISK_NAME"
         run("hdiutil attach -nomount ram://${RAM_DISK_SIZE_MB * 2048}", { path ->
             run("diskutil erasevolume HFS+ $RAM_DISK_NAME $path", {
-                logger.info "Shell: $it"
-                logger.lifecycle "Success: Mounted at $path"
+                project.logger.info "Shell: $it"
+                project.logger.lifecycle "Success: Mounted at $path"
             })
         })
     }

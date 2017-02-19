@@ -1,0 +1,8 @@
+apply plugin: 'groovy'
+
+sourceSets {
+    main {
+        groovy.srcDirs += '../plugin/src/main/groovy'
+        resources.srcDirs += '../plugin/src/main/resources'
+    }
+}
