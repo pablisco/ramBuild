@@ -1,3 +1,7 @@
 apply plugin: 'java'
 
 apply plugin: 'com.pablisco.gradle.rambuild'
+
+ramBuild {
+    size = "1g"
+}

@@ -1,8 +1,25 @@
-apply plugin: 'groovy'
+apply plugin: 'kotlin'
+
+buildscript{
+    configure([repositories, project.repositories]) {
+        maven { url 'https://repo.gradle.org/gradle/repo' }
+    }
+    ext.kotlin_version = '1.0.6'
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+dependencies {
+    compile gradleApi()
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    testCompile 'junit:junit:4.12'
+}
 
 sourceSets {
     main {
-        groovy.srcDirs += '../plugin/src/main/groovy'
+        kotlin.srcDirs += '../plugin/src/main/kotlin'
         resources.srcDirs += '../plugin/src/main/resources'
     }
 }
