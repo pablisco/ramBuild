@@ -6,3 +6,15 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * user guide available at http://gradle.org/docs/2.3/userguide/tutorial_java_projects.html
  */
+
+buildscript{
+    ext.kotlin_version = '1.1.4'
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://repo.gradle.org/gradle/repo' }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
+    }
+}

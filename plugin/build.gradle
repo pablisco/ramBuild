@@ -1,17 +1,4 @@
 apply plugin: 'kotlin'
-
-buildscript{
-    ext.kotlin_version = '1.0.6'
-    repositories {
-        maven { url "https://plugins.gradle.org/m2/" }
-        maven { url 'https://repo.gradle.org/gradle/repo' }
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
-    }
-}
-
 apply plugin: "com.gradle.plugin-publish"
 
 repositories {
@@ -21,12 +8,7 @@ repositories {
 group = 'com.pablisco.gradle'
 version = '0.1'
 
-dependencies {
-    compile gradleApi()
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    testCompile 'junit:junit:4.12'
-}
+apply from: 'dependencies.gradle'
 
 pluginBundle {
     website = 'http://pablisco.com/ramBuild'

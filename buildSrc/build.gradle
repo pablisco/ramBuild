@@ -4,18 +4,13 @@ buildscript{
     configure([repositories, project.repositories]) {
         maven { url 'https://repo.gradle.org/gradle/repo' }
     }
-    ext.kotlin_version = '1.0.6'
+    ext.kotlin_version = '1.1.4'
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-dependencies {
-    compile gradleApi()
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    testCompile 'junit:junit:4.12'
-}
+apply from: '../plugin/dependencies.gradle'
 
 sourceSets {
     main {
