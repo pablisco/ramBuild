@@ -1,4 +1,4 @@
-#Work In Progress [And only working on Mac so far]
+# Work In Progress [And only working on Mac so far]
 The state of this plugin is so much in ple-alpha that it has the potential to open a gap in the space-time continuum, 
 or at the very least it could mess up your computer or project. **Use at your own risk.**
 Also, Windows and Linux support will come in the future. 
